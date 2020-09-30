@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Ping coming soon page</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif
+    }
+    .flex {
+      display: flex;
+    }
+    .column {
+      flex-direction: column;
+    }
+    .row {
+      flex-direction: row;
+    }
+    .center {
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+    }
+    .space {
+      justify-content: space-between;
+      justify-content: space-around;
+      justify-content: space-evenly;
+    }
+    .padding {
+      padding: 5%;
+    }
+    header {
+      padding-top: 15%;
+    }
+    .logos {
+      width: 20px;
+      margin: 10px;
+      padding-top: 105%;
+    }
+    main img {
+      width: 70%;
+    }
+    .thin-text {
+      font-weight: 100;
+    }
+    input {
+      border: solid hsl(223, 100%, 88%) 1px;
+      padding: 10px;
+      border-radius: 15px;
+      width: 80%;
+      margin-bottom: 5px;
+    }
+    button {
+      background-color: hsl(223, 87%, 63%);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 15px;
+      width: 85%;
+    }
+    .active {
+      border-color: red;
+    }
+   
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    @media only screen and (min-width: 768px) {
+      .padding {
+        padding: 10px;
+      }
+      #desktop {
+        display: flex;
+        flex-direction: row;
+      }
+      input {
+        width: 500px;
+      }
+      button {
+        width: 200px;
+        height: 40px;
+      }
+      #desktop2 {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/logo.svg">
+    
+  </header>
+  <main id="app" class="flex column center space">
+    
+    <h1 class="padding"><span class="thin-text">We are launching </span>
+      soon! </h1>
+    <p class="padding">Subscribe and get notified</p>
+    <span id="desktop">
+      <span id="desktop2"> 
+  <input :class="{active: isActive}" v-model="message">
+
+  <span v-html="error" style="color:red"></span>
+</span>
+  <button v-on:click="send"> Notify Me </button> 
+</span>
+  <img src="images/illustration-dashboard.png">
+
+ 
+</main>
+  <footer class="flex column center">
+    <div class="flex row padding">
+    <img src="images/facebook.svg" class="logos">
+    <img src="images/twitter.svg" class="logos">
+    <img src="images/instagram.svg" class="logos">
+  </div>
+    &copy; Copyright Ping. All rights reserved.<br>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </p>
+  </footer>
+  <script>
+    
+  var app = new Vue({
+    el: '#app',
+    data: {
+      error: " ",
+      message: " ",
+      isActive: false
+    },
+    methods: {
+      send: function() {
+        if(this.message.indexOf('@') < 0) {
+          this.error = "Please provice a valid email adress "
+          this.isActive = true;
+        } else if (this.message === " ") {
+          this.error = "Whoops! It looks like you forgot to add your email"
+          this.isActive = true;
+        } else {
+          this.error = "Thanks"
+          this.isActive = false;
+        }
+      }
+    }
+  })
+  </script>
+</body>
+</html>
